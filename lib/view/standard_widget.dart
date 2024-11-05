@@ -19,9 +19,10 @@ class StandardPaymentWidget extends StatefulWidget {
 class _StandardPaymentWidgetAppState extends State<StandardPaymentWidget> implements TransactionCallBack {
 
   var options = InAppBrowserClassOptions(
-    crossPlatform: InAppBrowserOptions(hideUrlBar: true),
     inAppWebViewGroupOptions: InAppWebViewGroupOptions(
-      crossPlatform: InAppWebViewOptions(javaScriptEnabled: true),
+      crossPlatform: InAppWebViewOptions(
+        javaScriptEnabled: true,
+      ),
     ),
   );
 
@@ -29,7 +30,7 @@ class _StandardPaymentWidgetAppState extends State<StandardPaymentWidget> implem
   void initState() {
     super.initState();
     final browser = FlutterwaveInAppBrowser(callBack: this);
-    browser.openUrlRequest(urlRequest: URLRequest(url: WebUri(widget.webUrl)), options: options);
+    browser.openUrlRequest(urlRequest: URLRequest(url: Uri.parse(widget.webUrl)), options: options);
   }
 
   @override
